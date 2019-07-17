@@ -15,16 +15,6 @@ io.on("connection", (socket) => {
             socket.emit("cmd return",stdout);
         });
     })
-    socket.on("raspi_get_temp", (cmd) => {
-        console.log("Handling request : " + cmd);
-        exec(cmd, (error, stdout, stderr) => {
-            if (error) {
-                socket.emit("cmd return","wrongcmd");
-                return;
-            }
-            socket.emit("raspi_get_temp_return",stdout.split("=")[1]);
-        });
-    })
 })
 console.log("Server listening on port 3030")
 http.listen(3030);
