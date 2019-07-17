@@ -22,7 +22,7 @@ io.on("connection", (socket) => {
                 socket.emit("cmd return","wrongcmd");
                 return;
             }
-            socket.emit("raspi_get_temp_return",stdout);
+            socket.emit("raspi_get_temp_return",stdout.split("=")[1]);
         });
     })
 })
