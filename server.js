@@ -16,12 +16,12 @@ io.on("connection", (socket) => {
         });
     })
     socket.on("raspi_snmp_heat", (cmd) => {
-        console.log("Handling request : ", cmd);
         exec(cmd, (error, stdout, stderr) => {
             if (error) {
                 socket.emit("cmd return","wrongcmd");
                 return;
             }
+            console.log("Handling request : ", cmd , " => " + stdout);
             socket.emit("raspi_snmp_heat_return",stdout.split("=")[1]);
         });
     })
