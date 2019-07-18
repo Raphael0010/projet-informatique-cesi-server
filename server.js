@@ -16,6 +16,7 @@ io.on("connection", (socket) => {
         });
     })
     socket.on("raspi_snmp_heat", (cmd) => {
+        
         exec(cmd, (error, stdout, stderr) => {
             if (error) {
                 socket.emit("cmd return","wrongcmd");
