@@ -105,6 +105,86 @@ io.on("connection", (socket) => {
             socket.emit("raspi_snmp_memory_free_return",stdout);
         });
     })
+    socket.on("raspi_snmp_memory_free", (cmd) => {
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Handling request : ", cmd , " => " + stdout);
+            socket.emit("raspi_snmp_memory_free_return",stdout);
+        });
+    })
+    socket.on("switch_snmp_liste_interface", (cmd) => {
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Handling request : ", cmd , " => " + stdout);
+            socket.emit("switch_snmp_liste_interface_return",stdout);
+        });
+    })
+    socket.on("switch_snmp_liste_interface_connectee", (cmd) => {
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Handling request : ", cmd , " => " + stdout);
+            socket.emit("switch_snmp_liste_interface_connectee_return",stdout);
+        });
+    })
+    socket.on("switch_snmp_ventilo", (cmd) => {
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Handling request : ", cmd , " => " + stdout);
+            socket.emit("switch_snmp_ventilo_return",stdout);
+        });
+    })
+    socket.on("switch_snmp_debit_entrant", (cmd) => {
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Handling request : ", cmd , " => " + stdout);
+            socket.emit("switch_snmp_debit_entrant_return",stdout);
+        });
+    })
+    socket.on("switch_snmp_debit_sortant", (cmd) => {
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Handling request : ", cmd , " => " + stdout);
+            socket.emit("switch_snmp_debit_sortant_return",stdout);
+        });
+    })
+    socket.on("switch_snmp_name", (cmd) => {
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Handling request : ", cmd , " => " + stdout);
+            socket.emit("switch_snmp_name_return",stdout);
+        });
+    })
+    socket.on("switch_snmp_ip", (cmd) => {
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Handling request : ", cmd , " => " + stdout);
+            socket.emit("switch_snmp_ip_return",stdout);
+        });
+    })
 })
 console.log("Server listening on port 3030")
 http.listen(3030);
