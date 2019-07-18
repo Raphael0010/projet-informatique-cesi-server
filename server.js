@@ -85,6 +85,26 @@ io.on("connection", (socket) => {
             socket.emit("raspi_snmp_disk_free_return",stdout);
         });
     })
+    socket.on("raspi_snmp_memory_total", (cmd) => {
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Handling request : ", cmd , " => " + stdout);
+            socket.emit("raspi_snmp_memory_total_return",stdout);
+        });
+    })
+    socket.on("raspi_snmp_memory_free", (cmd) => {
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Handling request : ", cmd , " => " + stdout);
+            socket.emit("raspi_snmp_memory_free_return",stdout);
+        });
+    })
 })
 console.log("Server listening on port 3030")
 http.listen(3030);
