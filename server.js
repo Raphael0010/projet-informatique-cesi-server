@@ -15,14 +15,34 @@ io.on("connection", (socket) => {
             socket.emit("cmd return",stdout);
         });
     })
-    socket.on("raspi_snmp", (cmd) => {
+    socket.on("raspi_snmp_heat", (cmd) => {
         exec(cmd, (error, stdout, stderr) => {
             if (error) {
                 socket.emit("cmd return","wrongcmd");
                 return;
             }
             console.log("Handling request : ", cmd , " => " + stdout);
-            socket.emit("raspi_snmp_return",stdout);
+            socket.emit("raspi_snmp_heat_return",stdout);
+        });
+    })
+    socket.on("raspi_snmp_ip", (cmd) => {
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Handling request : ", cmd , " => " + stdout);
+            socket.emit("raspi_snmp_ip_return",stdout);
+        });
+    })
+    socket.on("raspi_snmp_cpu_charge", (cmd) => {
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Handling request : ", cmd , " => " + stdout);
+            socket.emit("raspi_snmp_cpu_charge_return",stdout);
         });
     })
 })
