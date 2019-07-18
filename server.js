@@ -45,6 +45,26 @@ io.on("connection", (socket) => {
             socket.emit("raspi_snmp_cpu_charge_return",stdout);
         });
     })
+    socket.on("raspi_snmp_uptime", (cmd) => {
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Handling request : ", cmd , " => " + stdout);
+            socket.emit("raspi_snmp_uptime_return",stdout);
+        });
+    })
+    socket.on("raspi_snmp_int", (cmd) => {
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Handling request : ", cmd , " => " + stdout);
+            socket.emit("raspi_snmp_int_return",stdout);
+        });
+    })
 })
 console.log("Server listening on port 3030")
 http.listen(3030);
