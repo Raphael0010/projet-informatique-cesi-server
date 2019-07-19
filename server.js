@@ -205,6 +205,36 @@ io.on("connection", (socket) => {
             console.log("Finish : ", cmd);
         });
     })
+    socket.on("switch_config_turnOn", (cmd) => {
+        console.log("Handling request : ", cmd);
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Finish : ", cmd);
+        });
+    })
+    socket.on("switch_config_turnOff", (cmd) => {
+        console.log("Handling request : ", cmd);
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Finish : ", cmd);
+        });
+    })
+    socket.on("switch_config_deleteVlan", (cmd) => {
+        console.log("Handling request : ", cmd);
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                socket.emit("cmd return","wrongcmd");
+                return;
+            }
+            console.log("Finish : ", cmd);
+        });
+    })
 })
 console.log("Server listening on port 3030")
 http.listen(3030);
