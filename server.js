@@ -186,13 +186,13 @@ io.on("connection", (socket) => {
         });
     })
     socket.on("switch_config_change_name", (cmd) => {
+        console.log("Handling request : ", cmd);
         exec(cmd, (error, stdout, stderr) => {
             if (error) {
                 socket.emit("cmd return","wrongcmd");
                 return;
             }
-            console.log("Handling request : ", cmd , " => " + stdout);
-            socket.emit("switch_config_change_name_return",stdout);
+            console.log("Finish : ", cmd);
         });
     })
 })
